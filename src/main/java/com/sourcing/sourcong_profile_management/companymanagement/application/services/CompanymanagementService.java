@@ -17,7 +17,7 @@ public class CompanymanagementService implements CompanymanagementUseCase {
      * Gte company information
      *
      * @param userId "company ID"
-     * @return
+     * @return "The company information"
      */
     @Override
     public CompanyInformation getCompanyInformation(Long userId) {

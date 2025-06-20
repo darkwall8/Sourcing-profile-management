@@ -1,11 +1,18 @@
 package com.sourcing.sourcong_profile_management.studentmanagement.infrastructure.adapters.output;
 
+import com.sourcing.sourcong_profile_management.shared.infrastructure.adapters.input.UploadingFileController;
 import com.sourcing.sourcong_profile_management.studentmanagement.application.ports.output.StudentmanagementRepository;
 import com.sourcing.sourcong_profile_management.studentmanagement.domain.model.StudentInformation;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class StudentmanagementRepositoryImpl implements StudentmanagementRepository {
+
+    private final UploadingFileController uploadingFileController;
+
+    public StudentmanagementRepositoryImpl(UploadingFileController uploadingFileController) {
+        this.uploadingFileController = uploadingFileController;
+    }
 
     @Override
     public StudentInformation getStudentInformation(Long userId) {

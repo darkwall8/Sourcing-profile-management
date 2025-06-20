@@ -18,7 +18,7 @@ public class CompanymanagementController {
      * Route to get company information
      *
      * @param userId "company ID"
-     * @return
+     * @return "The company information"
      */
     @GetMapping("/get-company-information/{userId}")
     public CompanyInformation getCompanyInformation(@PathVariable String userId) {
