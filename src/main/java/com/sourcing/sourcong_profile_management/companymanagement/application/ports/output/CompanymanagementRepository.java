@@ -3,6 +3,6 @@ package com.sourcing.sourcong_profile_management.companymanagement.application.p
 import com.sourcing.sourcong_profile_management.companymanagement.domain.model.CompanyInformation;
 
 public interface CompanymanagementRepository {
-    CompanyInformation get(Long userId);
-    void update(Long userId, CompanyInformation companyInformation);
+    CompanyInformation get(String userEmail);
+    void update(String userEmail, CompanyInformation companyInformation);
 }

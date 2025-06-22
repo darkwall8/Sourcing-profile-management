@@ -15,12 +15,12 @@ public class StudentmanagementController {
     }
 
     @GetMapping("/get-student-information/{userid}")
-    public StudentInformation getStudentInformation(@PathVariable String userid) {
-        return service.getStudentInformation(Long.valueOf(userid));
+    public StudentInformation getStudentInformation(@PathVariable String studentEmail) {
+        return service.getStudentInformation(studentEmail);
     }
 
     @PutMapping("/update-student-information/{userId}")
-    public void updateStudentInformation(@RequestBody StudentInformation studentInformation, @PathVariable String userId) {
-        service.updateStudentInformation(Long.valueOf(userId), studentInformation);
+    public void updateStudentInformation(@RequestBody StudentInformation studentInformation, @PathVariable String studentEmail) {
+        service.updateStudentInformation(studentEmail, studentInformation);
     }
 }

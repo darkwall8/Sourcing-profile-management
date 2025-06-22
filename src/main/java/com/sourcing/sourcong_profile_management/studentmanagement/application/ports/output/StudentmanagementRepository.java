@@ -3,6 +3,6 @@ package com.sourcing.sourcong_profile_management.studentmanagement.application.p
 import com.sourcing.sourcong_profile_management.studentmanagement.domain.model.StudentInformation;
 
 public interface StudentmanagementRepository {
-    StudentInformation getStudentInformation(Long userId);
-    void updateStudentInformation(Long userId, StudentInformation studentInformation);
+    StudentInformation getStudentInformation(String userEmail);
+    void updateStudentInformation(String userEmail, StudentInformation studentInformation);
 }

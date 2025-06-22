@@ -16,23 +16,23 @@ public class CompanymanagementService implements CompanymanagementUseCase {
     /**
      * Gte company information
      *
-     * @param userId "company ID"
+     * @param userEmail "company ID"
      * @return "The company information"
      */
     @Override
-    public CompanyInformation getCompanyInformation(Long userId) {
-        return repository.get(userId);
+    public CompanyInformation getCompanyInformation(String userEmail) {
+        return repository.get(userEmail);
     }
 
 
     /**
      * Update company information
      *
-     * @param userId "company ID"
+     * @param userEmail "company ID"
      * @param companyInformation "company new information"
      */
     @Override
-    public void updateCompanyInformation(Long userId, CompanyInformation companyInformation) {
-        repository.update(userId, companyInformation);
+    public void updateCompanyInformation(String userEmail, CompanyInformation companyInformation) {
+        repository.update(userEmail, companyInformation);
     }
 }

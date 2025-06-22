@@ -22,7 +22,7 @@ public class CompanymanagementController {
      */
     @GetMapping("/get-company-information/{userId}")
     public CompanyInformation getCompanyInformation(@PathVariable String userId) {
-        return service.getCompanyInformation(Long.valueOf(userId));
+        return service.getCompanyInformation(userId);
     }
 
     /**
@@ -33,7 +33,7 @@ public class CompanymanagementController {
      */
     @PutMapping("/update-company-information/{userId}")
     public void updateCompanyInformation(@PathVariable String userId, @RequestBody CompanyInformation companyInformation) {
-        service.updateCompanyInformation(Long.valueOf(userId), companyInformation);
+        service.updateCompanyInformation(userId, companyInformation);
     }
 
 }

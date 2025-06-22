@@ -14,15 +14,12 @@ public class StudentmanagementService implements StudentmanagementUseCase {
     }
 
     @Override
-    public StudentInformation getStudentInformation(Long studentId) {
-        repository.getStudentInformation(studentId);
-        // TO DO
-        return null;
+    public StudentInformation getStudentInformation(String studentEmail) {
+        return repository.getStudentInformation(studentEmail);
     }
 
     @Override
-    public void updateStudentInformation(Long studentId, StudentInformation studentInformation) {
-        repository.updateStudentInformation(studentId, studentInformation);
-        // TO DO
+    public void updateStudentInformation(String studentEmail, StudentInformation studentInformation) {
+        repository.updateStudentInformation(studentEmail, studentInformation);
     }
 }
