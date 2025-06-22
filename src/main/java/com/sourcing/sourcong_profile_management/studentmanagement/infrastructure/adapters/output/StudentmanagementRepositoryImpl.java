@@ -20,11 +20,11 @@ public class StudentmanagementRepositoryImpl implements StudentmanagementReposit
 
     @Override
     public StudentInformation getStudentInformation(String userEmail) {
-        return apiClient.get("/api/users/email/" + userEmail, StudentInformation.class).getBody();
+        return apiClient.get(apiClient.getBaseUrl() + "/api/users/email/" + userEmail, StudentInformation.class).getBody();
     }
 
     @Override
     public void updateStudentInformation(String userEmail, StudentInformation studentInformation) {
-        this.apiClient.put("/api/users/" + userEmail, studentInformation, StudentInformation.class);
+        this.apiClient.put(apiClient.getBaseUrl() + "/api/users/" + userEmail, studentInformation, StudentInformation.class);
     }
 }

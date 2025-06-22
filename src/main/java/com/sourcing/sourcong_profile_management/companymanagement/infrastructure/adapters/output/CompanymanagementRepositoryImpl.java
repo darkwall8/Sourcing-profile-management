@@ -19,11 +19,11 @@ public class CompanymanagementRepositoryImpl implements CompanymanagementReposit
 
     @Override
     public CompanyInformation get(String userEmail) {
-        return apiClient.get("/api/users/email/" + userEmail, CompanyInformation.class).getBody();
+        return apiClient.get(apiClient.getBaseUrl() + "/api/users/email/" + userEmail, CompanyInformation.class).getBody();
     }
 
     @Override
     public void update(String userEmail, CompanyInformation companyInformation) {
-        this.apiClient.put("/api/users/" + userEmail, companyInformation, CompanyInformation.class);
+        this.apiClient.put(apiClient.getBaseUrl() + "/api/users/" + userEmail, companyInformation, CompanyInformation.class);
     }
 }
