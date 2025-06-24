@@ -2,8 +2,10 @@ package com.sourcing.sourcong_profile_management.companymanagement.infrastructur
 
 import com.sourcing.sourcong_profile_management.companymanagement.application.ports.output.CompanymanagementRepository;
 import com.sourcing.sourcong_profile_management.companymanagement.domain.model.CompanyInformation;
+import com.sourcing.sourcong_profile_management.companymanagement.infrastructure.dto.CompanyDto;
 import com.sourcing.sourcong_profile_management.shared.infrastructure.APIClient;
 import com.sourcing.sourcong_profile_management.shared.infrastructure.adapters.input.UploadingFileController;
+import com.sourcing.sourcong_profile_management.shared.infrastructure.dto.PasswordDto;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,12 +20,19 @@ public class CompanymanagementRepositoryImpl implements CompanymanagementReposit
     }
 
     @Override
-    public CompanyInformation get(String userEmail) {
-        return apiClient.get(apiClient.getBaseUrl() + "/api/users/email/" + userEmail, CompanyInformation.class).getBody();
+    public CompanyInformation get(String companyEmail) {
+        return apiClient.get(apiClient.getBaseUrl() + "/api/users/email/" + companyEmail, CompanyInformation.class).getBody();
     }
 
     @Override
-    public void update(String userEmail, CompanyInformation companyInformation) {
-        this.apiClient.put(apiClient.getBaseUrl() + "/api/users/" + userEmail, companyInformation, CompanyInformation.class);
+    public void update(String companyEmail, CompanyInformation companyInformation) {
+        CompanyDto companyDto = new CompanyDto(companyInformation);
+        this.apiClient.put(apiClient.getBaseUrl() + "/api/users/" + companyEmail, companyInformation, CompanyInformation.class);
+    }
+
+    @Override
+    public void updatePassword(String companyEmail, String password, String newPassword) {
+        PasswordDto passwordDto = new PasswordDto(password, newPassword, companyEmail);
+        this.apiClient.put(apiClient.getBaseUrl() + "/api/auth/update/password" + companyEmail, passwordDto.getJsonPObject(), PasswordDto.class);
     }
 }

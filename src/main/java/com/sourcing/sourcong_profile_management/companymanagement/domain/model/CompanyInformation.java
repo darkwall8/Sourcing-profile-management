@@ -1,5 +1,7 @@
 package com.sourcing.sourcong_profile_management.companymanagement.domain.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.sourcing.sourcong_profile_management.shared.domain.model.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +27,7 @@ public class CompanyInformation {
     private String companyDescription;
     private Boolean companyHasInternOpportunity;
     private User user;
+    private JSONPObject jsonpObject;
 
     public CompanyInformation(User user, Long id, Long userId, String companyPhone, Long companyActivitySectorId, String companyAddress, String companyWebsite, String companyCorporate, String companyLocation, String companyRCCM, String companyNIU, String companyCommercialRegister, String companyLegalStatus, String companyTaxConformityCertificate, String companyStaticalDeclarationNumber, String companyInternShipDuration, String companyDescription, Boolean companyHasInternOpportunity) {
         this.user = user;
@@ -45,5 +48,12 @@ public class CompanyInformation {
         this.companyInternShipDuration = companyInternShipDuration;
         this.companyDescription = companyDescription;
         this.companyHasInternOpportunity = companyHasInternOpportunity;
+
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            this.jsonpObject = new JSONPObject("data", objectMapper.valueToTree(this));
+        } catch (Exception e) {
+            throw new RuntimeException("Error during JSON conversion", e);
+        }
     }
 }

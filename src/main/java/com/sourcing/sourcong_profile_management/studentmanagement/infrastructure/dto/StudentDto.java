@@ -11,9 +11,9 @@ public class StudentDto {
         private Boolean hasPremium;
         private String email;
         private Boolean isActivated;
-        private Integer role_id;
-        private Long id;
-        private Long userId;
+        private Number role_id;
+        private Number id;
+        private Number userId;
         private String studentCountry;
         private String studentSchoolLevel;
         private String studentSpecification;
@@ -29,7 +29,7 @@ public class StudentDto {
             this.hasPremium = user.getHasPremium();
             this.email = user.getEmail();
             this.isActivated = user.getIsActivated();
-            this.role_id = user.getRole_id();
+            this.role_id = user.getRoleId();
             this.id = id;
             this.studentCountry = studentCountry;
             this.studentSchoolLevel = studentSchoolLevel;

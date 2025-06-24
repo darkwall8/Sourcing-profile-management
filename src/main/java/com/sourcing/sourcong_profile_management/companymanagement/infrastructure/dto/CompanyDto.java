@@ -1,5 +1,6 @@
 package com.sourcing.sourcong_profile_management.companymanagement.infrastructure.dto;
 
+import com.sourcing.sourcong_profile_management.companymanagement.domain.model.CompanyInformation;
 import com.sourcing.sourcong_profile_management.shared.domain.model.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,11 +12,11 @@ public class CompanyDto {
     private Boolean hasPremium;
     private String email;
     private Boolean isActivated;
-    private Integer role_id;
-    private Long id;
-    private Long userId;
+    private Number role_id;
+    private Number id;
+    private Number userId;
     private String companyPhone;
-    private Long companyActivitySectorId;
+    private Number companyActivitySectorId;
     private String companyAddress;
     private String companyWebsite;
     private String companyCorporate;
@@ -30,29 +31,29 @@ public class CompanyDto {
     private String companyDescription;
     private Boolean companyHasInternOpportunity;
 
-    CompanyDto(User user, Long id, Long userId, String companyPhone, Long companyActivitySectorId, String companyAddress, String companyWebsite, String companyCorporate, String companyLocation, String companyRCCM, String companyNIU, String companyCommercialRegister, String companyLegalStatus, String companyTaxConformityCertificate, String companyStaticalDeclarationNumber, String companyInternShipDuration, String companyDescription, Boolean companyHasInternOpportunity) {
-        this.userId = user.getId();
-        this.name = user.getName();
-        this.hasPremium = user.getHasPremium();
-        this.email = user.getEmail();
-        this.isActivated = user.getIsActivated();
-        this.role_id = user.getRole_id();
-        this.id = id;
-        this.userId = userId;
-        this.companyPhone = companyPhone;
-        this.companyActivitySectorId = companyActivitySectorId;
-        this.companyAddress = companyAddress;
-        this.companyWebsite = companyWebsite;
-        this.companyCorporate = companyCorporate;
-        this.companyLocation = companyLocation;
-        this.companyRCCM = companyRCCM;
-        this.companyNIU = companyNIU;
-        this.companyCommercialRegister = companyCommercialRegister;
-        this.companyLegalStatus = companyLegalStatus;
-        this.companyTaxConformityCertificate = companyTaxConformityCertificate;
-        this.companyStaticalDeclarationNumber = companyStaticalDeclarationNumber;
-        this.companyInternShipDuration = companyInternShipDuration;
-        this.companyDescription = companyDescription;
-        this.companyHasInternOpportunity = companyHasInternOpportunity;
+    public CompanyDto(CompanyInformation companyInformation) {
+        this.userId = companyInformation.getUser().getId();
+        this.name = companyInformation.getUser().getName();
+        this.hasPremium = companyInformation.getUser().getHasPremium();
+        this.email = companyInformation.getUser().getEmail();
+        this.isActivated = companyInformation.getUser().getIsActivated();
+        this.role_id = companyInformation.getUser().getRoleId();
+        this.id = companyInformation.getId();
+        this.userId = companyInformation.getUserId();
+        this.companyPhone = companyInformation.getCompanyPhone();
+        this.companyActivitySectorId = companyInformation.getCompanyActivitySectorId();
+        this.companyAddress = companyInformation.getCompanyAddress();
+        this.companyWebsite = companyInformation.getCompanyWebsite();
+        this.companyCorporate = companyInformation.getCompanyCorporate();
+        this.companyLocation = companyInformation.getCompanyLocation();
+        this.companyRCCM = companyInformation.getCompanyRCCM();
+        this.companyNIU = companyInformation.getCompanyNIU();
+        this.companyCommercialRegister = companyInformation.getCompanyCommercialRegister();
+        this.companyLegalStatus = companyInformation.getCompanyLegalStatus();
+        this.companyTaxConformityCertificate = companyInformation.getCompanyTaxConformityCertificate();
+        this.companyStaticalDeclarationNumber = companyInformation.getCompanyStaticalDeclarationNumber();
+        this.companyInternShipDuration = companyInformation.getCompanyInternShipDuration();
+        this.companyDescription = companyInformation.getCompanyDescription();
+        this.companyHasInternOpportunity = companyInformation.getCompanyHasInternOpportunity();
     }
 }
