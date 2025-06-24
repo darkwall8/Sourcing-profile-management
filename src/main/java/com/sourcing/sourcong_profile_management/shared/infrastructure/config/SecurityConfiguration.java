@@ -21,9 +21,17 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(Customizer.withDefaults()) // Active CORS
-                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()) // Tout est accessible
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .cors(Customizer.withDefaults())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/api/v1/echo"
+                        ).permitAll()
+                        .anyRequest().authenticated()
+                )
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                );
+
         return http.build();
     }
 
@@ -31,16 +39,14 @@ public class SecurityConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of(
-                "http://localhost:3000"
-        ));
-
+        config.setAllowedOrigins(List.of("http://localhost:3000"));  // ou List.of("*") si tu autorises tout
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
+
         return source;
     }
 }
