@@ -22,4 +22,10 @@ public class StudentmanagementService implements StudentmanagementUseCase {
     public void updateStudentInformation(String studentEmail, StudentInformation studentInformation) {
         repository.updateStudentInformation(studentEmail, studentInformation);
     }
+
+    @Override
+    public void updateStudentPassword(String studentEmail, String studentPassword, String newPassword) {
+        repository.updateStudentPassword(studentEmail, studentPassword, newPassword);
+    }
+
 }

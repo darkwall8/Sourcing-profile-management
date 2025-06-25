@@ -9,13 +9,14 @@ import lombok.Setter;
 @Setter
 @Getter
 public class CompanyInformation {
-    private Long id;
-    private Long userId;
+    private String id;
+    private String userId;
     private String companyPhone;
     private Long companyActivitySectorId;
     private String companyAddress;
     private String companyWebsite;
     private String companyCorporate;
+    private String companySize;
     private String companyLocation;
     private String companyRCCM;
     private String companyNIU;
@@ -29,7 +30,7 @@ public class CompanyInformation {
     private User user;
     private JSONPObject jsonpObject;
 
-    public CompanyInformation(User user, Long id, Long userId, String companyPhone, Long companyActivitySectorId, String companyAddress, String companyWebsite, String companyCorporate, String companyLocation, String companyRCCM, String companyNIU, String companyCommercialRegister, String companyLegalStatus, String companyTaxConformityCertificate, String companyStaticalDeclarationNumber, String companyInternShipDuration, String companyDescription, Boolean companyHasInternOpportunity) {
+    public CompanyInformation(User user, String id, String userId, String companyPhone, Long companyActivitySectorId, String companyAddress, String companyWebsite, String companyCorporate, String companyLocation, String companyRCCM, String companyNIU, String companyCommercialRegister, String companyLegalStatus, String companyTaxConformityCertificate, String companyStaticalDeclarationNumber, String companyInternShipDuration, String companyDescription, Boolean companyHasInternOpportunity, String companySize) {
         this.user = user;
         this.id = id;
         this.userId = userId;
@@ -38,6 +39,7 @@ public class CompanyInformation {
         this.companyAddress = companyAddress;
         this.companyWebsite = companyWebsite;
         this.companyCorporate = companyCorporate;
+        this.companySize = companySize;
         this.companyLocation = companyLocation;
         this.companyRCCM = companyRCCM;
         this.companyNIU = companyNIU;
@@ -48,12 +50,5 @@ public class CompanyInformation {
         this.companyInternShipDuration = companyInternShipDuration;
         this.companyDescription = companyDescription;
         this.companyHasInternOpportunity = companyHasInternOpportunity;
-
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            this.jsonpObject = new JSONPObject("data", objectMapper.valueToTree(this));
-        } catch (Exception e) {
-            throw new RuntimeException("Error during JSON conversion", e);
-        }
     }
 }

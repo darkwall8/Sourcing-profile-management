@@ -21,18 +21,29 @@ public class CompanymanagementService implements CompanymanagementUseCase {
      */
     @Override
     public CompanyInformation getCompanyInformation(String userEmail) {
-        return repository.get(userEmail);
+        return repository.getCompanyInformation(userEmail);
     }
 
 
     /**
      * Update company information
      *
-     * @param userEmail "company ID"
+     * @param userEmail "company Email"
      * @param companyInformation "company new information"
      */
     @Override
     public void updateCompanyInformation(String userEmail, CompanyInformation companyInformation) {
-        repository.update(userEmail, companyInformation);
+        repository.updateCompanyInformation(userEmail, companyInformation);
+    }
+
+    /**
+     *
+     * @param userEmail "Company Email"
+     * @param password "Company last password"
+     * @param newPassword "Company new password"
+     */
+    @Override
+    public void updateCompanyPassword(String userEmail, String password, String newPassword) {
+        repository.updateCompanyPassword(userEmail, password, newPassword);
     }
 }

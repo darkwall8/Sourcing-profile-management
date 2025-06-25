@@ -20,18 +20,18 @@ public class CompanymanagementRepositoryImpl implements CompanymanagementReposit
     }
 
     @Override
-    public CompanyInformation get(String companyEmail) {
+    public CompanyInformation getCompanyInformation(String companyEmail) {
         return apiClient.get(apiClient.getBaseUrl() + "/api/users/email/" + companyEmail, CompanyInformation.class).getBody();
     }
 
     @Override
-    public void update(String companyEmail, CompanyInformation companyInformation) {
+    public void updateCompanyInformation(String companyEmail, CompanyInformation companyInformation) {
         CompanyDto companyDto = new CompanyDto(companyInformation);
-        this.apiClient.put(apiClient.getBaseUrl() + "/api/users/" + companyEmail, companyInformation, CompanyInformation.class);
+        this.apiClient.put(apiClient.getBaseUrl() + "/api/users/" + companyEmail, companyDto, CompanyInformation.class);
     }
 
     @Override
-    public void updatePassword(String companyEmail, String password, String newPassword) {
+    public void updateCompanyPassword(String companyEmail, String password, String newPassword) {
         PasswordDto passwordDto = new PasswordDto(password, newPassword, companyEmail);
         this.apiClient.put(apiClient.getBaseUrl() + "/api/auth/update/password" + companyEmail, passwordDto.getJsonPObject(), PasswordDto.class);
     }

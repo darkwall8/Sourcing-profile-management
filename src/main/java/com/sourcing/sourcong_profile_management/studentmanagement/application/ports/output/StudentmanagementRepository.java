@@ -5,4 +5,5 @@ import com.sourcing.sourcong_profile_management.studentmanagement.domain.model.S
 public interface StudentmanagementRepository {
     StudentInformation getStudentInformation(String userEmail);
     void updateStudentInformation(String userEmail, StudentInformation studentInformation);
+    void updateStudentPassword(String userEmail, String newPassword,  String lastPassword);
 }

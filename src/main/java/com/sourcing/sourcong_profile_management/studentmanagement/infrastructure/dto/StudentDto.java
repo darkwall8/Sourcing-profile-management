@@ -1,43 +1,51 @@
 package com.sourcing.sourcong_profile_management.studentmanagement.infrastructure.dto;
 
-import com.sourcing.sourcong_profile_management.shared.domain.model.User;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.sourcing.sourcong_profile_management.studentmanagement.domain.model.StudentInformation;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class StudentDto {
-        private String name;
-        private Boolean hasPremium;
-        private String email;
-        private Boolean isActivated;
-        private Number role_id;
-        private Number id;
-        private Number userId;
-        private String studentCountry;
-        private String studentSchoolLevel;
-        private String studentSpecification;
-        private Boolean studentWantToReceiveNotification;
-        private String studentCV;
-        private String studentGitHubLink;
-        private String studentPortfolioLink;
-        private String studentLinkedinLink;
+    private JSONPObject jsonPObject;
 
-        StudentDto(User user, Long id, Long userId, String studentCountry, String studentSchoolLevel, String studentSpecification, Boolean studentWantToReceiveNotification, String studentCV, String studentGitHubLink, String studentPortfolioLink, String studentLinkedinLink) {
-            this.userId = user.getId();
-            this.name = user.getName();
-            this.hasPremium = user.getHasPremium();
-            this.email = user.getEmail();
-            this.isActivated = user.getIsActivated();
-            this.role_id = user.getRoleId();
-            this.id = id;
-            this.studentCountry = studentCountry;
-            this.studentSchoolLevel = studentSchoolLevel;
-            this.studentSpecification = studentSpecification;
-            this.studentWantToReceiveNotification = studentWantToReceiveNotification;
-            this.studentCV = studentCV;
-            this.studentGitHubLink = studentGitHubLink;
-            this.studentPortfolioLink = studentPortfolioLink;
-            this.studentLinkedinLink = studentLinkedinLink;
+    public StudentDto(StudentInformation studentInformation) {
+        try {
+            JsonNodeFactory factory = JsonNodeFactory.instance;
+
+            ObjectNode companyInfoNode = factory.objectNode();
+            companyInfoNode.put("id", studentInformation.getId());
+            companyInfoNode.put("userEmail", studentInformation.getUser().getEmail());
+            companyInfoNode.put("studentCountry", studentInformation.getUser().getName());
+            companyInfoNode.put("studentSchoolLevel", studentInformation.getStudentSchoolLevel());
+            companyInfoNode.put("studentSpecification", studentInformation.getStudentSpecification());
+            companyInfoNode.put("studentWantToReceiveNotification", studentInformation.getStudentWantToReceiveNotification());
+            companyInfoNode.put("studentCv", studentInformation.getStudentCV());
+            companyInfoNode.put("portfolioUrl", studentInformation.getStudentPortfolioLink());
+            companyInfoNode.put("githubUrl", studentInformation.getStudentGitHubLink());
+            companyInfoNode.put("linkedinUrl", studentInformation.getStudentLinkedinLink());
+
+            ObjectNode userNode = factory.objectNode();
+            userNode.put("id", studentInformation.getUser().getId());
+            userNode.put("name", studentInformation.getUser().getName());
+            userNode.put("email", studentInformation.getUser().getEmail());
+            userNode.put("profileId", studentInformation.getUser().getProfileId());
+            userNode.put("profileName", studentInformation.getUser().getProfileName());
+            userNode.put("roleId", studentInformation.getUser().getRoleId());
+            userNode.put("roleName", studentInformation.getUser().getRoleName());
+            userNode.put("hasPremium", studentInformation.getUser().getHasPremium());
+            userNode.put("isActivated", studentInformation.getUser().getIsActivated());
+
+            ObjectNode root = factory.objectNode();
+            root.set("studentInfo", companyInfoNode);
+            root.set("user", userNode);
+
+            this.jsonPObject = new JSONPObject("result", root);
+        } catch (Exception e) {
+            throw new RuntimeException("Error during JSON creation", e);
         }
+    }
 }

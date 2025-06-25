@@ -13,13 +13,13 @@ public class User {
 //    private String password;
 //    private Boolean isActivated;
 //    private Integer role_id;
-    private Number id;
+    private String id;
     private String name;
     private String email;
     private String password;
-    private Number profileId;
+    private String profileId;
     private String profileName;
-    private Number roleId;
+    private String roleId;
     private String roleName;
     private Boolean hasPremium;
     private Boolean isActivated;
@@ -27,7 +27,7 @@ public class User {
     private String createdAt;
     private String updatedAt;
 
-    public User(Long id, String name, String email, String password, Number profileId, String profileName, Number roleId, String roleName, Boolean hasPremium, Boolean isActivated, String lastLogin, String createdAt, String updatedAt) {
+    public User(String id, String name, String email, String password, String profileId, String profileName, String roleId, String roleName, Boolean hasPremium, Boolean isActivated, String lastLogin, String createdAt, String updatedAt) {
         this.id = id;
         this.name = name;
         this.email = email;

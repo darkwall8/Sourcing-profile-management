@@ -1,5 +1,8 @@
 package com.sourcing.sourcong_profile_management.studentmanagement.domain.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.sourcing.sourcong_profile_management.shared.domain.model.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +19,8 @@ public class StudentInformation {
     private String studentGitHubLink;
     private String studentPortfolioLink;
     private String studentLinkedinLink;
+    private User user;
+    private JSONPObject jsonpObject;
 
     public StudentInformation(Long id, Long userId, String studentCountry, String studentSchoolLevel, String studentSpecification, Boolean studentWantToReceiveNotification, String studentCV, String studentGitHubLink, String studentPortfolioLink, String studentLinkedinLink) {
         this.id = id;
