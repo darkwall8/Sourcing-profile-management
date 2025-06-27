@@ -19,6 +19,11 @@ public class StudentmanagementService implements StudentmanagementUseCase {
     }
 
     @Override
+    public void saveStudentInformation(StudentInformation studentInformation) {
+        repository.saveStudentInformation(studentInformation);
+    }
+
+    @Override
     public void updateStudentInformation(String studentEmail, StudentInformation studentInformation) {
         repository.updateStudentInformation(studentEmail, studentInformation);
     }

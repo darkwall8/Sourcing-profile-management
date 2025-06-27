@@ -26,6 +26,11 @@ public class StudentmanagementRepositoryImpl implements StudentmanagementReposit
     }
 
     @Override
+    public void saveStudentInformation(StudentInformation studentInformation) {
+        apiClient.post(apiClient.getBaseUrl() + "/api/uwers/email/", studentInformation, StudentInformation.class).getBody();
+    }
+
+    @Override
     public void updateStudentInformation(String userEmail, StudentInformation studentInformation) {
         StudentDto studentDto = new StudentDto(studentInformation);
         this.apiClient.put(apiClient.getBaseUrl() + "/api/users/" + userEmail, studentDto, StudentInformation.class);

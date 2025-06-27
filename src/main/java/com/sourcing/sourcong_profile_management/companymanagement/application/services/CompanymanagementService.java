@@ -14,7 +14,7 @@ public class CompanymanagementService implements CompanymanagementUseCase {
     }
 
     /**
-     * Gte company information
+     * Get company information
      *
      * @param userEmail "company ID"
      * @return "The company information"
@@ -22,6 +22,16 @@ public class CompanymanagementService implements CompanymanagementUseCase {
     @Override
     public CompanyInformation getCompanyInformation(String userEmail) {
         return repository.getCompanyInformation(userEmail);
+    }
+
+    /**
+     * Save company information
+     *
+     * @param companyInformation "Company information"
+     */
+    @Override
+    public void createCompanyInformation(CompanyInformation companyInformation) {
+        repository.saveCompanyInformation(companyInformation);
     }
 
 

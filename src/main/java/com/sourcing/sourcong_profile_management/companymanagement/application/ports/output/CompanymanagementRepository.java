@@ -4,6 +4,7 @@ import com.sourcing.sourcong_profile_management.companymanagement.domain.model.C
 
 public interface CompanymanagementRepository {
     CompanyInformation getCompanyInformation(String userEmail);
+    void saveCompanyInformation(CompanyInformation companyInformation);
     void updateCompanyInformation(String userEmail, CompanyInformation companyInformation);
     void updateCompanyPassword(String userEmail, String newPassword,  String lastPassword);
 }
